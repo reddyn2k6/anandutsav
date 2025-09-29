@@ -18,7 +18,7 @@ connectDB();
 const app=express();
 
 
-
+app.use(cors({origin:allowedOrigins,credentials:true}));
 app.use(express.json()); 
 app.use(express.urlencoded({ extended: true })); 
 
