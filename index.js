@@ -9,24 +9,30 @@ import router from "./routes/authRoutes.js"
 
 import connectDB from './config/connect.js';
 
-const PORT=process.env.PORT|| 4000;
+const PORT = process.env.PORT || 4000;
 
 connectDB();
 
 
 
-const app=express();
+const app = express();
 
 
-app.use(cors({origin:allowedOrigins,credentials:true}));
-app.use(express.json()); 
-app.use(express.urlencoded({ extended: true })); 
+const allowedOrigins = [
+    'http://localhost:5173',                 // local React dev
+    'https://your-frontend-domain.com'       // production frontend
+];
 
 
-app.use('/auth',router);
+app.use(cors({ origin: allowedOrigins, credentials: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+
+app.use('/auth', router);
 
 
 
-app.listen(PORT,()=>{
-    console.log("Server Started at PORT" ,PORT);
+app.listen(PORT, () => {
+    console.log("Server Started at PORT", PORT);
 })
