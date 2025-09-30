@@ -17,7 +17,7 @@ export const enteremail = async (req, res) => {
       return res.status(400).json({ success: false, msg: "User doesn't exist" });
     }
     const otp= String(Math.floor(100000+ Math.random()*900000)); 
-   
+    
 
       u.Otp=otp;
       u.OtpExpireAt=Date.now()+2*60*1000;  // 2 mins
@@ -55,7 +55,9 @@ if(!userOtp) {
 }
     // Check OTP
     try{
-        
+        if(userOtp!==u.Otp) {
+return res.status(400),json((success: false, msg: "Invalid Otp"));
+}
 
     // Check expiry
     if (Date.now() > u.OtpExpireAt) {
