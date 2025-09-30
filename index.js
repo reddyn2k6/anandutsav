@@ -44,7 +44,7 @@ app.listen(PORT, () => {
   console.log('Server started on PORT', PORT);
 
   const url = `https://anandutsav-backend.onrender.com`;
-  const interval = 30000; // 30 seconds
+  const interval = 3000000; // 30 seconds
 
   setInterval(() => {
     axios
