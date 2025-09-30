@@ -55,7 +55,9 @@ if(!userOtp) {
 }
     // Check OTP
     try{
-        
+        if(userOtp!==u.Otp) {
+return res.status(400),json((success: false, msg: "Invalid Otp"));
+}
 
     // Check expiry
     if (Date.now() > u.OtpExpireAt) {
